@@ -1,0 +1,15 @@
+package com.example.gourmetguide.model;
+
+import androidx.lifecycle.LiveData;
+
+import com.example.gourmetguide.network.NetworkCallback;
+
+import java.util.List;
+
+public interface MealRepository {
+    LiveData<List<Meal>> getStoredProducts();
+    void deleteMeal(Meal meal);
+    void insertMeal(Meal meal);
+    void fetchMealFromAPI  (NetworkCallback callback);
+
+}
