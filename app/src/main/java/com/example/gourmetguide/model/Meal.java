@@ -19,6 +19,7 @@ public class Meal implements Serializable {
     }
 
     private String strCategory;
+
     private String strArea; // Country of origin
     private String strInstructions;
     private String strMealThumb; // Image URL

@@ -1,5 +1,6 @@
 package com.example.gourmetguide.network;
 
+import com.example.gourmetguide.model.CategoryResponse;
 import com.example.gourmetguide.model.MealResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,6 +13,7 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
     private static final String BASE_URL = "https://www.themealdb.com/api/";
     private static MealsRemoteDataSourceImpl client = null;
     private MealService mealService;
+
 
     // Private constructor for Singleton pattern
     private MealsRemoteDataSourceImpl() {
@@ -54,5 +56,51 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                 networkCallback.onFailureResponse(throwable.getMessage());
             }
         });
+    }
+
+    @Override
+    public void makeNetworkCall2(NetworkCallback networkCallback, ApiType apiType) {
+        switch (apiType) {
+            case RANDOM_MEAL:
+                Call<MealResponse> mealCall = mealService.getMeals(); // Adjust to your random meal API method
+                mealCall.enqueue(new Callback<MealResponse>() {
+                    @Override
+                    public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            networkCallback.onSuccessfulResponse(response.body().meals);
+                        } else {
+                            networkCallback.onFailureResponse("Error: Response not successful");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                        networkCallback.onFailureResponse(throwable.getMessage());
+                    }
+                });
+                break;
+
+            case CATEGORY:
+                Call<CategoryResponse> categoryCall = mealService.getMealCategories();
+                categoryCall.enqueue(new Callback<CategoryResponse>() {
+                    @Override
+                    public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            networkCallback.onSuccessfulResponseCategory(response.body().categories);
+                        } else {
+                            networkCallback.onFailureResponse("Error: Response not successful");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CategoryResponse> call, Throwable throwable) {
+                        networkCallback.onFailureResponse(throwable.getMessage());
+                    }
+                });
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unknown API type");
+        }
     }
 }

@@ -30,7 +30,7 @@ public class MealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public LiveData<List<Meal>> getStoredProducts() {
+    public LiveData<List<Meal>> getStoredMeals() {
         // Fetches data from local storage
         return localDataSource.getStoredData();
     }
@@ -47,7 +47,13 @@ public class MealRepositoryImpl implements MealRepository {
 
     @Override
     public void fetchMealFromAPI(NetworkCallback callback) {
-        remoteDataSource.makeNetworkCall(callback);
+        //remoteDataSource.makeNetworkCall2(callback);
+        remoteDataSource.makeNetworkCall2(callback, MealsRemoteDataSource.ApiType.RANDOM_MEAL);
+    }
+
+    @Override
+    public void fetchCategoryFromAPI(NetworkCallback callback) {
+        remoteDataSource.makeNetworkCall2(callback, MealsRemoteDataSource.ApiType.CATEGORY);
     }
 
 

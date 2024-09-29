@@ -1,6 +1,7 @@
 package com.example.gourmetguide.mealOfTheDay.presenter;
 
 import com.example.gourmetguide.mealOfTheDay.view.MealDayView;
+import com.example.gourmetguide.model.Category;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepository;
 import com.example.gourmetguide.network.NetworkCallback;
@@ -30,6 +31,11 @@ public class MealDayPresenterImpl implements MealDayPresenter, NetworkCallback {
     @Override
     public void onSuccessfulResponse(List<Meal> meals) {
         _view.showData(meals);
+    }
+
+    @Override
+    public void onSuccessfulResponseCategory(List<Category> categories) {
+
     }
 
     @Override

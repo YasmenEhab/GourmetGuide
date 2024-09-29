@@ -35,6 +35,8 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
     private Button btnViewDetails;
     private Meal currentMeal;
 
+
+
     private static final String TAG = "MealDayFragment"; // Log tag
 
 

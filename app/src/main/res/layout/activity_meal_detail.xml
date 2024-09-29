@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FFEBDA"
     android:padding="16dp">
 
     <!-- Meal Name -->
@@ -80,10 +81,11 @@
     <!-- Add/Remove Favorite Button -->
     <Button
         android:id="@+id/btn_add_favorite"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Add to Favorites"
-
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_shape"
+        android:text="Add to Fav"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>
