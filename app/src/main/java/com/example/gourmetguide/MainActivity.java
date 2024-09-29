@@ -5,11 +5,14 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gourmetguide.databinding.ActivityMainBinding;
 import com.example.gourmetguide.mealFav.view.MealFavFragment;
 import com.example.gourmetguide.mealOfTheDay.view.MealDayFragment;
+import com.example.gourmetguide.mealplan.view.MealPlanFragment;
 import com.example.gourmetguide.search.view.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,20 +20,47 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     BottomNavigationView bottomNavigationView;
     MealDayFragment mealDayFragment;
-    MealFavFragment mealFavFragment;
+   // MealFavFragment mealFavFragment;
     SearchFragment fragment;
+
+    ActivityMainBinding binding;
 
     public static final String DYNAMIC_FRAGMENT_TAG = "Dynamic Fragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        replaceFragment(new MealDayFragment());
+        binding.bottomNavigationView.setOnItemSelectedListener( item ->
+        {
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+           if(item.getItemId() == R.id.nav_home)
+           {
+               replaceFragment(new MealDayFragment());
+           }
+           else if (item.getItemId() == R.id.nav_plan)
+           {
+               replaceFragment(new MealPlanFragment());
+           }
+           else if (item.getItemId() == R.id.nav_search)
+           {
+               replaceFragment(new SearchFragment());
+           }
+           else if (item.getItemId() == R.id.nav_favorites)
+           {
+               replaceFragment(new MealFavFragment());
+           }
+
+
+            return true;
+        });
+
+//        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
         //bottomNavigationView.setSelectedItemId(R.id.nav_meal); // Set default selected item
-        bottomNavigationView.setSelectedItemId(R.id.nav_favorites); // Set default selected item
+       // bottomNavigationView.setSelectedItemId(R.id.nav_home); // Set default selected item
 
 
         // Initialize and display the MealDayFragment
@@ -39,13 +69,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //            loadFragment(mealDayFragment); // Load the fragment by default
 //        }
         // Initialize and display the MealDayFragment
-        if (savedInstanceState == null) {
-            fragment = new SearchFragment();
-            loadFragment(fragment); // Load the fragment by default
-        }
+//        if (savedInstanceState == null) {
+//            fragment = new SearchFragment();
+//            loadFragment(fragment); // Load the fragment by default
+//        }
 
 
 
+    }
+
+    private void replaceFragment(Fragment fragment)
+    {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.mainLayout , fragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -76,11 +114,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //        fragmentTransaction.replace(R.id.flFragment, fragment, DYNAMIC_FRAGMENT_TAG);
 //        fragmentTransaction.commit();
 //    }
-    private void loadFragment(SearchFragment fragment) {
+    private void loadFragment(MealDayFragment fragment) {
         // Replace the current fragment with the new one
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.flFragment, fragment, DYNAMIC_FRAGMENT_TAG);
-        fragmentTransaction.commit();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.flFragment, fragment, DYNAMIC_FRAGMENT_TAG);
+//        fragmentTransaction.commit();
     }
 }
