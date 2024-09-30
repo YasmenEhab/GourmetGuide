@@ -7,4 +7,7 @@
     <string name="ingredient">Ingredient</string>
     <string name="category">Category</string>
     <string name="show_details">Show Details</string>
+    <string name="searchbycounter">Country</string>
+    <string name="searchByIngredient">Ingredient</string>
+    <string name="searchByCountry">Country</string>
 </resources>

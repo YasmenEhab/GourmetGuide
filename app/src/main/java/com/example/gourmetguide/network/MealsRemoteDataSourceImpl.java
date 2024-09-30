@@ -1,5 +1,7 @@
 package com.example.gourmetguide.network;
 
+import android.util.Log;
+
 import com.example.gourmetguide.model.CategoryResponse;
 import com.example.gourmetguide.model.MealResponse;
 import retrofit2.Call;
@@ -103,4 +105,78 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                 throw new IllegalArgumentException("Unknown API type");
         }
     }
+    @Override
+    public void getMealsByNameFromNetwork(NetworkCallback networkCallback, String mealName) {
+        mealService.getMealsbyName(mealName).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                if(response.isSuccessful()){
+                    Log.i("MainActivity", "onResponse: name  " + response.body().meals);
+                    networkCallback.onSuccessfulResponse(response.body().meals);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                Log.i("MainActivity", "onFailure: ");
+                networkCallback.onFailureResponse(throwable.getMessage());
+            }
+        });
+    }
+    @Override
+    public void getMealsByCategoryFromNetwork(NetworkCallback networkCallback, String category) {
+        mealService.getMealsbyCategory(category).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                if(response.isSuccessful()){
+                    Log.i("MainActivity", "onResponse: " + response.body().meals);
+                    networkCallback.onSuccessfulResponse(response.body().meals);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                Log.i("MainActivity", "onFailure: ");
+                networkCallback.onFailureResponse(throwable.getMessage());
+            }
+        });
+    }
+    @Override
+    public void getMealsByCountryFromNetwork(NetworkCallback networkCallback, String country) {
+        mealService.getMealsbyCountry(country).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                if(response.isSuccessful()){
+                    Log.i("MainActivity", "onResponse: country " + response.body().meals);
+                    networkCallback.onSuccessfulResponse(response.body().meals);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                Log.i("MainActivity", "onFailure: ");
+                networkCallback.onFailureResponse(throwable.getMessage());
+            }
+        });
+    }
+    @Override
+    public void getMealsByIngredientFromNetwork(NetworkCallback networkCallback, String ingredient) {
+        mealService.getMealsbyIngredient(ingredient).enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                if(response.isSuccessful()){
+                    Log.i("MainActivity", "onResponse: " + response.body().meals);
+                    networkCallback.onSuccessfulResponse(response.body().meals);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable throwable) {
+                Log.i("MainActivity", "onFailure: ");
+                networkCallback.onFailureResponse(throwable.getMessage());
+            }
+        });
+    }
+
+
 }

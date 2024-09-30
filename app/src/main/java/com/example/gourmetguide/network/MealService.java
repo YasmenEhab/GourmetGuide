@@ -5,6 +5,7 @@ import com.example.gourmetguide.model.MealResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface MealService {
     @GET("json/v1/1/random.php")
@@ -12,4 +13,16 @@ public interface MealService {
 
     @GET("json/v1/1/categories.php")
     Call<CategoryResponse> getMealCategories();
+
+    @GET("json/v1/1/search.php")
+    Call<MealResponse> getMealsbyName(@Query("s") String mealName);
+
+    @GET("json/v1/1/filter.php")
+    Call<MealResponse> getMealsbyCategory(@Query("c") String category);
+
+    @GET("json/v1/1/filter.php")
+    Call<MealResponse> getMealsbyIngredient(@Query("i") String ingredient);
+
+    @GET("json/v1/1/filter.php")
+    Call<MealResponse> getMealsbyCountry(@Query("a") String country);
 }

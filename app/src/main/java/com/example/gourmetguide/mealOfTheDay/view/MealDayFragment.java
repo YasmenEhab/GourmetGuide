@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,19 +23,27 @@ import com.example.gourmetguide.db.MealsLocalDataSourceImpl;
 import com.example.gourmetguide.mealDetail.viewer.MealDetailActivity;
 import com.example.gourmetguide.mealOfTheDay.presenter.MealDayPresenter;
 import com.example.gourmetguide.mealOfTheDay.presenter.MealDayPresenterImpl;
+import com.example.gourmetguide.model.Category;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepositoryImpl;
 import com.example.gourmetguide.network.MealsRemoteDataSourceImpl;
+import com.example.gourmetguide.searchbycategory.view.SearchByCategoryAdapter2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class MealDayFragment extends Fragment implements onMealClickListener ,MealDayView  {
+
     private MealDayPresenter presenter;
     private TextView tvMealName, tvMealOrigin;
     private ImageView mealImage;
     private Button btnViewDetails;
     private Meal currentMeal;
+
+    private RecyclerView recyclerViewCategory;
+    private MealDayAdapter mealCategoryAdapter;
+    LinearLayoutManager linearLayout;
 
 
 
@@ -58,10 +68,20 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         tvMealOrigin = view.findViewById(R.id.tv_meal_origin);
         mealImage = view.findViewById(R.id.meal_image);
         btnViewDetails = view.findViewById(R.id.btn_view_details);
+        recyclerViewCategory = view.findViewById(R.id.recycler_view_categories);
+
+        // Setup RecyclerView
+        recyclerViewCategory.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false); // Horizontal layout
+        recyclerViewCategory.setLayoutManager(layoutManager);
+        Log.e(TAG, " categories adapter ");
+        mealCategoryAdapter = new MealDayAdapter(new ArrayList<>(), requireContext(), this);
+        recyclerViewCategory.setAdapter(mealCategoryAdapter);
 
         // Set up the presenter
         presenter = new MealDayPresenterImpl(this, MealRepositoryImpl.getInstance(MealsRemoteDataSourceImpl.getInstance(), MealsLocalDataSourceImpl.getInstance(requireContext())));
         presenter.getMeals();
+        presenter.getCategories();
 
         // Set up button click listener to trigger onClick(Meal meal) method
         btnViewDetails.setOnClickListener(v -> {
@@ -112,6 +132,12 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         AlertDialog dialog = builder.create();
         dialog.show();
 
+    }
+
+    @Override
+    public void showCategory(List<Category> categories) {
+        mealCategoryAdapter.setList(categories);
+        mealCategoryAdapter.notifyDataSetChanged();
     }
 
 
