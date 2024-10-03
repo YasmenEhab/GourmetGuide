@@ -74,7 +74,7 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         recyclerViewCategory.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false); // Horizontal layout
         recyclerViewCategory.setLayoutManager(layoutManager);
-        Log.e(TAG, " categories adapter ");
+        Log.i(TAG, " categories adapter ");
         mealCategoryAdapter = new MealDayAdapter(new ArrayList<>(), requireContext(), this);
         recyclerViewCategory.setAdapter(mealCategoryAdapter);
 

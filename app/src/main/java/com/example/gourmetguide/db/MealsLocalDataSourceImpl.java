@@ -6,13 +6,16 @@ import androidx.lifecycle.LiveData;
 
 import com.example.gourmetguide.mealOfTheDay.view.MealDayFragment;
 import com.example.gourmetguide.model.Meal;
+import com.example.gourmetguide.model.MealPlan;
 
+import java.util.Date;
 import java.util.List;
 
 public class MealsLocalDataSourceImpl implements MealsLocalDataSource{
     private MealDAO dao;
     private static MealsLocalDataSourceImpl localSource = null;
     private LiveData<List<Meal>> storedProducts;
+    private LiveData<List<MealPlan>> plannedMeals;
 
     private MealsLocalDataSourceImpl (Context context)
     {
@@ -55,4 +58,26 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource{
     public LiveData<List<Meal>> getStoredData() {
         return storedProducts;
     }
+    @Override
+    public LiveData<List<MealPlan>> getPlannedMeals() {
+
+        return plannedMeals;
+    }
+    @Override
+    public LiveData<List<MealPlan>> getPlanMeals(Date date) {
+
+        plannedMeals = dao.getAllPlanMeals(date);
+        return plannedMeals;
+    }
+    @Override
+    public void insertMealToPlan(MealPlan meal, Date date){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                meal.setDate(date);
+                dao.insertMealToPlan(meal);
+            }
+        }).start();
+    }
+
 }

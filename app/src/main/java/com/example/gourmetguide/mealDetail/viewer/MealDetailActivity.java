@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -25,6 +27,7 @@ import com.example.gourmetguide.mealDetail.presenter.MealDetailPresenterImpl;
 import com.example.gourmetguide.mealOfTheDay.presenter.MealDayPresenter;
 import com.example.gourmetguide.mealOfTheDay.presenter.MealDayPresenterImpl;
 import com.example.gourmetguide.model.Meal;
+import com.example.gourmetguide.model.MealPlan;
 import com.example.gourmetguide.model.MealRepositoryImpl;
 import com.example.gourmetguide.network.MealsRemoteDataSourceImpl;
 
@@ -32,15 +35,19 @@ import android.widget.VideoView;
 import android.net.Uri;
 import android.widget.MediaController;
 
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
-public class MealDetailActivity extends AppCompatActivity implements onMealDetailClickListener , MealDetailView {
+public class MealDetailActivity extends AppCompatActivity implements onMealDetailClickListener , MealDetailView  ,DatePickerDialogFragment.OnDateSelectedListener  {
     private MealDetailPresenter presenter;
-    private TextView tvMealName, tvMealOrigin;
+    private TextView tvMealName, tvMealOrigin , txtSteps;
     private ImageView mealImage;
     private Button btnAddFav;
+    private Button btnAddPlan;
     private Meal currentMeal;
     private WebView webView;
+    private RecyclerView recyclerViewSteps;
 
     private static final String TAG = "MealDetailActivity";
     @Override
@@ -52,14 +59,21 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
         // Initialize views
         tvMealName   = findViewById(R.id.tv_meal_name_detail);
         tvMealOrigin = findViewById(R.id.tv_meal_origin_detail);
+        //txtSteps     = findViewById(R.id.tv_steps_detail);
         mealImage    = findViewById(R.id.meal_image_detail);
         btnAddFav    = findViewById(R.id.btn_add_favorite);
+        btnAddPlan    = findViewById(R.id.btn_add_plan);
         webView = findViewById(R.id.webview);
+        recyclerViewSteps=findViewById(R.id.recycler_view_steps);
+
+        // Set up RecyclerView
+        recyclerViewSteps.setLayoutManager(new LinearLayoutManager(this));
 
         // Retrieve the Meal object from the intent
         Intent intent = getIntent();
         currentMeal = (Meal) intent.getSerializableExtra("meal");
         Log.d(TAG, "Intent extras: " + intent.getExtras());
+
         if (currentMeal == null) {
             Log.e(TAG, "Current meal is null, check the intent data");
         }
@@ -67,10 +81,16 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
             tvMealName.setText(currentMeal.getStrMeal());
             tvMealOrigin.setText(currentMeal.getStrArea());
 
+
             webView.getSettings().setJavaScriptEnabled(true);
             String videoUrl =currentMeal.strYoutube.replace("watch?v=", "embed/");
             Log.d(TAG, "Video URL: " + videoUrl);
             webView.loadUrl(videoUrl);
+
+            // Split instructions into steps and set adapter
+            String[] steps = currentMeal.getStrInstructions().split("\n"); // Assuming steps are separated by new lines
+            StepsAdapter adapter = new StepsAdapter(Arrays.asList(steps));
+            recyclerViewSteps.setAdapter(adapter);
 
             Glide.with(this)
                     .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
@@ -83,7 +103,7 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
 
         // Set up the presenter
         presenter = new MealDetailPresenterImpl(this, MealRepositoryImpl.getInstance(MealsRemoteDataSourceImpl.getInstance(), MealsLocalDataSourceImpl.getInstance(this))) ;
-        //presenter.getMeals();
+
 
         btnAddFav.setOnClickListener(v -> {
             if (currentMeal != null) {
@@ -91,6 +111,19 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
                 Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
             }
         });
+
+        btnAddPlan.setOnClickListener(v -> {
+            if (currentMeal != null) {
+                // Show the DatePickerDialogFragment to select a date
+                DatePickerDialogFragment datePickerDialogFragment = new DatePickerDialogFragment();
+                datePickerDialogFragment.setOnDateSelectedListener(dateInMillis -> {
+                    // Pass selected date and meal to the presenter
+                    presenter.addToPlan(currentMeal, dateInMillis);
+                });
+                datePickerDialogFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+
 
     }
 
@@ -129,14 +162,13 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
+    public void showConfirmationMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
-    protected void onStop() {
-        super.onStop();
+    public void onDateSelected(long dateInMillis) {
 
     }
 }

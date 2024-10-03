@@ -1,11 +1,14 @@
 package com.example.gourmetguide.model;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 
 import com.example.gourmetguide.db.MealsLocalDataSource;
 import com.example.gourmetguide.network.MealsRemoteDataSource;
 import com.example.gourmetguide.network.NetworkCallback;
 
+import java.util.Date;
 import java.util.List;
 
 public class MealRepositoryImpl implements MealRepository {
@@ -34,6 +37,15 @@ public class MealRepositoryImpl implements MealRepository {
         // Fetches data from local storage
         return localDataSource.getStoredData();
     }
+    @Override
+    public LiveData<List<MealPlan>> getPlannedMeals()
+    {
+        return localDataSource.getPlannedMeals();
+    }
+    public LiveData<List<MealPlan>> getPlanMeals(Date date)
+    {
+        return localDataSource.getPlanMeals(date);
+    }
 
     @Override
     public void deleteMeal(Meal meal) {
@@ -44,10 +56,16 @@ public class MealRepositoryImpl implements MealRepository {
     public void insertMeal(Meal meal) {
         localDataSource.insertMeal(meal);
     }
+    @Override
+    public void insertMealToPlan(MealPlan meal, Date date)
+    {
+        localDataSource.insertMealToPlan(meal,  date);
+    }
 
     @Override
     public void fetchMealFromAPI(NetworkCallback callback) {
         //remoteDataSource.makeNetworkCall2(callback);
+        Log.i("repo","fetch random meal ");
         remoteDataSource.makeNetworkCall2(callback, MealsRemoteDataSource.ApiType.RANDOM_MEAL);
     }
     @Override

@@ -51,32 +51,7 @@
         android:background="@android:color/white"
     android:queryHint="Search for meals" />
 
-    <!-- Filter Chips / Dropdown with margin -->
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:singleSelection="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_ingredient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingredient" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Country" />
-    </com.google.android.material.chip.ChipGroup>
 
     <!-- RecyclerView for search results with margin -->
     <androidx.recyclerview.widget.RecyclerView

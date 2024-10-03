@@ -25,7 +25,7 @@ public class MealDayAdapter extends RecyclerView.Adapter<MealDayAdapter.ViewHold
 
     private final Context context;
     private List<Category> p;
-    private static final String TAG = "Recycler viewer";
+    private static final String TAG = "Category Recycler viewer";
     private onMealClickListener listener;
 
     public MealDayAdapter(List<Category> c, Context context, onMealClickListener _listener ) {

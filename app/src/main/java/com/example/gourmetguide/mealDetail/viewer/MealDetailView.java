@@ -7,5 +7,6 @@ import java.util.List;
 public interface MealDetailView {
     public void showData(List<Meal> meals);
     public void showErrMsg (String error);
+    void showConfirmationMessage(String message);
 
 }

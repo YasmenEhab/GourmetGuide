@@ -69,10 +69,6 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
         // Initialize search view and chips
         SearchView searchView = view.findViewById(R.id.search_bar);
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
-        //ChipGroup chipGroup = view.findViewById(R.id.chip_group);
-//        Chip chipCategory = view.findViewById(R.id.chip_category);
-//        Chip chipIngredient = view.findViewById(R.id.chip_ingredient);
-//        Chip chipCountry = view.findViewById(R.id.chip_country);
 
        // presenter.getMeals();
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -109,51 +105,6 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
         });
 
 
-
-//        chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
-//            // Reset current filter type
-//            currentFilterType = "name";  // Default to name search
-//
-//            // Check the currently checked chips
-//            for (int id : checkedIds) {
-//                if (id == R.id.chip_category) {
-//                    currentFilterType = "category";
-//                    break; // Exit loop after finding the first checked chip
-//                } else if (id == R.id.chip_ingredient) {
-//                    currentFilterType = "ingredient";
-//                    break; // Exit loop after finding the first checked chip
-//                } else if (id == R.id.chip_country) {
-//                    currentFilterType = "country";
-//                    break; // Exit loop after finding the first checked chip
-//                }
-//            }
-//        });
-//        chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
-//            if (checkedId == R.id.chip_category) {
-//                currentFilterType = "category";
-//            } else if (checkedId == R.id.chip_ingredient) {
-//                currentFilterType = "ingredient";
-//            } else if (checkedId == R.id.chip_country) {
-//                currentFilterType = "country";
-//            } else {
-//                currentFilterType = "name";  // Default to name search if none selected
-//            }
-//            Log.i("Current Filter", "Current filter: " + currentFilterType);
-//            switch (currentFilterType) {
-//                case "name":
-//                    searchView.setQueryHint("Enter Meal Name");
-//                    break;
-//                case "country":
-//                    searchView.setQueryHint("Enter Country Name");
-//                    break;
-//                case "ingredient":
-//                    searchView.setQueryHint("Enter Ingredient Name");
-//                    break;
-//                case "category":
-//                    searchView.setQueryHint("Enter Category Name");
-//                    break;
-//            }
-//        });
 
 
 
