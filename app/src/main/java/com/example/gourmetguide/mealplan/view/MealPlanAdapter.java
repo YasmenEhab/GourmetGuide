@@ -17,9 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.gourmetguide.R;
-import com.example.gourmetguide.mealFav.view.MealFavAdapter;
-import com.example.gourmetguide.mealFav.view.onMealFavClickListener;
-import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealPlan;
 
 import java.util.List;
@@ -52,7 +49,7 @@ public class MealPlanAdapter extends RecyclerView.Adapter<MealPlanAdapter.ViewHo
             titleview = v.findViewById(R.id.txtMealPlanName);
             //tvMealOrigin = v.findViewById(R.id.fav_meal_origin);
             thumbnailimg = v.findViewById(R.id.imgMealPlan);
-            btnShowDetail = v.findViewById(R.id.btnMealPlanShowDetails);
+            btnShowDetail = v.findViewById(R.id.btnShowDetail);
 
 
         }

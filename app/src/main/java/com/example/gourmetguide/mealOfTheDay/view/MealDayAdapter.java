@@ -83,8 +83,8 @@ public class MealDayAdapter extends RecyclerView.Adapter<MealDayAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        Log.i(TAG, "***** getItemCount **************");
-        Log.i(TAG, "return length of recycler view ");
+        //Log.i(TAG, "***** getItemCount **************");
+        //Log.i(TAG, "return length of recycler view ");
         return p.size();
     }
 }

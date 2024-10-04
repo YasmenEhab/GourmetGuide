@@ -27,7 +27,7 @@ public class MealFavAdapter extends RecyclerView.Adapter<MealFavAdapter.ViewHold
 
     private final Context context;
     private List<Meal> p;
-    private static final String TAG = "Recycler viewer";
+    private static final String TAG = "Fav Recycler viewer";
     private onMealFavClickListener listener;
 
     public MealFavAdapter(List<Meal> c, Context context, onMealFavClickListener _listener ) {
@@ -94,8 +94,8 @@ public class MealFavAdapter extends RecyclerView.Adapter<MealFavAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        Log.i(TAG, "***** getItemCount **************");
-        Log.i(TAG, "return length of recycler view ");
+        //Log.i(TAG, "***** getItemCount **************");
+        //Log.i(TAG, "return length of recycler view ");
         return p.size();
     }
 }

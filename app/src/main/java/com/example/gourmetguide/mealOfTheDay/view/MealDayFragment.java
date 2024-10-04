@@ -107,7 +107,8 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         if (meals != null && !meals.isEmpty()) {
             Log.d(TAG, "showData called with meals: " + meals.size());
             currentMeal = meals.get(0);
-
+            Log.d("MealDay", "Ingredients: " + currentMeal.getIngredients());
+            Log.d("MealDay", "Measures: " + currentMeal.getMeasures());
             // Update UI with meal details
             tvMealName.setText(currentMeal.getStrMeal());
             tvMealOrigin.setText(currentMeal.getStrArea());

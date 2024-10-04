@@ -35,6 +35,7 @@ import android.widget.VideoView;
 import android.net.Uri;
 import android.widget.MediaController;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +49,7 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
     private Meal currentMeal;
     private WebView webView;
     private RecyclerView recyclerViewSteps;
+    private RecyclerView recyclerViewIngredients;
 
     private static final String TAG = "MealDetailActivity";
     @Override
@@ -57,17 +59,19 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
         setContentView(R.layout.activity_meal_detail);
 
         // Initialize views
-        tvMealName   = findViewById(R.id.tv_meal_name_detail);
-        tvMealOrigin = findViewById(R.id.tv_meal_origin_detail);
-        //txtSteps     = findViewById(R.id.tv_steps_detail);
-        mealImage    = findViewById(R.id.meal_image_detail);
-        btnAddFav    = findViewById(R.id.btn_add_favorite);
-        btnAddPlan    = findViewById(R.id.btn_add_plan);
-        webView = findViewById(R.id.webview);
+        tvMealName      = findViewById(R.id.tv_meal_name_detail);
+        tvMealOrigin    = findViewById(R.id.tv_meal_origin_detail);
+        mealImage       = findViewById(R.id.meal_image_detail);
+        btnAddFav       = findViewById(R.id.btn_add_favorite);
+        btnAddPlan      = findViewById(R.id.btn_add_plan);
+        webView          = findViewById(R.id.webview);
         recyclerViewSteps=findViewById(R.id.recycler_view_steps);
+        recyclerViewIngredients=findViewById(R.id.rv_ingredients);
+
 
         // Set up RecyclerView
         recyclerViewSteps.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewIngredients.setLayoutManager(new LinearLayoutManager(this));
 
         // Retrieve the Meal object from the intent
         Intent intent = getIntent();
@@ -81,6 +85,8 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
             tvMealName.setText(currentMeal.getStrMeal());
             tvMealOrigin.setText(currentMeal.getStrArea());
 
+            //List<String> ingredientList = currentMeal.getNonNullIngredients();  // Assuming this method returns a List<String>
+            //String[] ingredients = ingredientList.toArray(new String[0]);
 
             webView.getSettings().setJavaScriptEnabled(true);
             String videoUrl =currentMeal.strYoutube.replace("watch?v=", "embed/");
@@ -91,6 +97,12 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
             String[] steps = currentMeal.getStrInstructions().split("\n"); // Assuming steps are separated by new lines
             StepsAdapter adapter = new StepsAdapter(Arrays.asList(steps));
             recyclerViewSteps.setAdapter(adapter);
+
+            Log.d("MealDetails", "Ingredients: " + currentMeal.getIngredients());
+            Log.d("MealDetails", "Measures: " + currentMeal.getMeasures());
+            IngredientAdapter adapter2 = new IngredientAdapter( currentMeal.getIngredients(),currentMeal.getMeasures(),this);
+            recyclerViewIngredients.setAdapter(adapter2);
+
 
             Glide.with(this)
                     .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
@@ -103,7 +115,7 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
 
         // Set up the presenter
         presenter = new MealDetailPresenterImpl(this, MealRepositoryImpl.getInstance(MealsRemoteDataSourceImpl.getInstance(), MealsLocalDataSourceImpl.getInstance(this))) ;
-
+       // presenter.
 
         btnAddFav.setOnClickListener(v -> {
             if (currentMeal != null) {
@@ -129,26 +141,26 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
 
 
 
-    // shall i remove the implementation
+
     @Override
     public void showData(List<Meal> meals) {
-            if (meals != null && !meals.isEmpty()) {
-            Log.d(TAG, "showData called with meals: " + meals.size());
-            currentMeal = meals.get(0);
-
-            // Update UI with meal details
-            tvMealName.setText(currentMeal.getStrMeal());
-            tvMealOrigin.setText(currentMeal.getStrArea());
-
-            Glide.with(this)
-                    .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
-                    .into(mealImage);
-            Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
-        }
-        else
-        {
-            Log.d(TAG, "No meals received to display");
-        }
+//            if (meals != null && !meals.isEmpty()) {
+//            Log.d(TAG, "showData called with meals: " + meals.size());
+//            currentMeal = meals.get(0);
+//
+//            // Update UI with meal details
+//            tvMealName.setText(currentMeal.getStrMeal());
+//            tvMealOrigin.setText(currentMeal.getStrArea());
+//
+//            Glide.with(this)
+//                    .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
+//                    .into(mealImage);
+//            Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
+//        }
+//        else
+//        {
+//            Log.d(TAG, "No meals received to display");
+//        }
 
     }
 

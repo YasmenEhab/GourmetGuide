@@ -48,6 +48,7 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                 if (response.isSuccessful() && response.body() != null) {
                     // Assuming meals is a public field in MealResponse or accessed via getter
                     networkCallback.onSuccessfulResponse(response.body().meals);
+                    Log.d("API Response", response.body().toString());
                 } else {
                     networkCallback.onFailureResponse("Error: Response body is null or not successful");
                 }
@@ -69,6 +70,7 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                     @Override
                     public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
+                            Log.d("API Response", response.body().toString());
                             networkCallback.onSuccessfulResponse(response.body().meals);
                         } else {
                             networkCallback.onFailureResponse("Error: Response not successful");

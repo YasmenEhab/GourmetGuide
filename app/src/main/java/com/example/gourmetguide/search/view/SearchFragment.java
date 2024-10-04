@@ -1,5 +1,6 @@
 package com.example.gourmetguide.search.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.gourmetguide.R;
 import com.example.gourmetguide.db.MealsLocalDataSourceImpl;
+import com.example.gourmetguide.mealDetail.viewer.MealDetailActivity;
 import com.example.gourmetguide.mealFav.presenter.MealFavPresenterImpl;
 import com.example.gourmetguide.mealFav.view.MealFavAdapter;
 import com.example.gourmetguide.model.Category;
@@ -145,13 +147,20 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
 
     @Override
     public void onClick(Meal meal) {
-
+        Intent intent = new Intent(requireContext(), MealDetailActivity.class);
+        intent.putExtra("meal", meal); // Pass the meal object to the details screen
+        startActivity(intent);
     }
 
     @Override
     public void showData(List<Meal> meals) {
         Log.d(TAG, "showData called with meals: " + meals.size());
+        Meal firstMeal = meals.get(0);
+        List<String> ingredients = firstMeal.getIngredients();
+        String firstIngredient = ingredients.get(0);
+        Toast.makeText(getContext(), "First Ingredient: " + firstIngredient, Toast.LENGTH_SHORT).show();
         mealAdapter.setList(meals);
+
         mealAdapter.notifyDataSetChanged();
     }
 

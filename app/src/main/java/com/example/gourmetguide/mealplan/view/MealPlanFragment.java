@@ -1,5 +1,6 @@
 package com.example.gourmetguide.mealplan.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,21 +13,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.example.gourmetguide.R;
 import com.example.gourmetguide.db.MealsLocalDataSourceImpl;
+import com.example.gourmetguide.mealDetail.viewer.MealDetailActivity;
 import com.example.gourmetguide.mealplan.presenter.PlanPresenter;
 import com.example.gourmetguide.mealplan.presenter.PlanPresenterIpml;
+import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealPlan;
-import com.example.gourmetguide.model.MealRepository;
 import com.example.gourmetguide.model.MealRepositoryImpl;
 import com.example.gourmetguide.network.MealsRemoteDataSourceImpl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -38,6 +40,8 @@ public class MealPlanFragment extends Fragment  implements onMealPlanClickListen
     PlanPresenter presenter;
     private LiveData<List<MealPlan>> planList;
     private static final String TAG = "MealPlanFragment";
+    Button btnViewDetails;
+    MealPlan currentMeal;
 
 
     @Override
@@ -100,11 +104,27 @@ public class MealPlanFragment extends Fragment  implements onMealPlanClickListen
 
         });
 
+
+//        btnViewDetails.setOnClickListener(v -> {
+//            if (currentMeal != null) {
+//               // Log.d(TAG, "View details button clicked for meal: " + currentMeal.getStrMeal());
+//                onClick(currentMeal); // Use the onClick handler for the meal
+//            }
+//            else {
+//                Log.d(TAG, "No meals received to display");
+//
+//            }
+//        });
+
         return view;
     }
 
     @Override
-    public void onClick(MealPlan meal) {
+    public void onClick(MealPlan mealPlan) {
+        Meal meal = mealPlan.getMeal();
+        Intent intent = new Intent(getContext(), MealDetailActivity.class);
+        intent.putExtra("meal", meal);
+        startActivity(intent);
 
     }
 
