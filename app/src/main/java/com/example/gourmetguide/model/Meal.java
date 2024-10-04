@@ -26,50 +26,367 @@ public class Meal implements Serializable {
     private String strMealThumb; // Image URL
     public String strYoutube; // Embedded video
 
-    private String ingredient1;
-    private String ingredient2;
-    private String ingredient3;
-    private String ingredient4;
-    private String ingredient5;
-    private String ingredient6;
-    private String ingredient7;
-    private String ingredient8;
-    private String ingredient9;
-    private String ingredient10;
-    private String ingredient11;
-    private String ingredient12;
-    private String ingredient13;
-    private String ingredient14;
-    private String ingredient15;
-    private String ingredient16;
-    private String ingredient17;
-    private String ingredient18;
-    private String ingredient19;
-    private String ingredient20;
+    public String strIngredient1;
+    public String strIngredient2;
+    public String strIngredient3;
+    public String strIngredient4;
+    public String strIngredient5;
+    public String strIngredient6;
+    public String strIngredient7;
+    public String strIngredient8;
+    public String strIngredient9;
+    public String strIngredient10;
+    public String strIngredient11;
+    public String strIngredient12;
+    public String strIngredient13;
+    public String strIngredient14;
+    public String strIngredient15;
+    public String strIngredient16;
+    public String strIngredient17;
+    public String strIngredient18;
+    public String strIngredient19;
+    public String strIngredient20;
 
+    public String strMeasure1;
+    public String strMeasure2;
+    public String strMeasure3;
+    public String strMeasure4;
+    public String strMeasure5;
+    public String strMeasure6;
+    public String strMeasure7;
+    public String strMeasure8;
+    public String strMeasure9;
+    public String strMeasure10;
+    public String strMeasure11;
+    public String strMeasure12;
+    public String strMeasure13;
+    public String strMeasure14;
+    public String strMeasure15;
+    public String strMeasure16;
+    public String strMeasure17;
+    public String strMeasure18;
+    public String strMeasure19;
+    public String strMeasure20;
 
-    private String measure1;
-    private String measure2;
-    private String measure3;
-    private String measure4;
-    private String measure5;
-    private String measure6;
-    private String measure7;
-    private String measure8;
-    private String measure9;
-    private String measure10;
-    private String measure11;
-    private String measure12;
-    private String measure13;
-    private String measure14;
-    private String measure15;
-    private String measure16;
-    private String measure17;
-    private String measure18;
-    private String measure19;
-    private String measure20;
+    public String getStrIngredient1() {
+        return strIngredient1;
+    }
 
+    public void setStrIngredient1(String strIngredient1) {
+        this.strIngredient1 = strIngredient1;
+    }
 
+    public String getStrIngredient2() {
+        return strIngredient2;
+    }
+
+    public void setStrIngredient2(String strIngredient2) {
+        this.strIngredient2 = strIngredient2;
+    }
+
+    public String getStrIngredient3() {
+        return strIngredient3;
+    }
+
+    public void setStrIngredient3(String strIngredient3) {
+        this.strIngredient3 = strIngredient3;
+    }
+
+    public String getStrIngredient4() {
+        return strIngredient4;
+    }
+
+    public void setStrIngredient4(String strIngredient4) {
+        this.strIngredient4 = strIngredient4;
+    }
+
+    public String getStrIngredient5() {
+        return strIngredient5;
+    }
+
+    public void setStrIngredient5(String strIngredient5) {
+        this.strIngredient5 = strIngredient5;
+    }
+
+    public String getStrIngredient6() {
+        return strIngredient6;
+    }
+
+    public void setStrIngredient6(String strIngredient6) {
+        this.strIngredient6 = strIngredient6;
+    }
+
+    public String getStrIngredient7() {
+        return strIngredient7;
+    }
+
+    public void setStrIngredient7(String strIngredient7) {
+        this.strIngredient7 = strIngredient7;
+    }
+
+    public String getStrIngredient8() {
+        return strIngredient8;
+    }
+
+    public void setStrIngredient8(String strIngredient8) {
+        this.strIngredient8 = strIngredient8;
+    }
+
+    public String getStrIngredient9() {
+        return strIngredient9;
+    }
+
+    public void setStrIngredient9(String strIngredient9) {
+        this.strIngredient9 = strIngredient9;
+    }
+
+    public String getStrIngredient10() {
+        return strIngredient10;
+    }
+
+    public void setStrIngredient10(String strIngredient10) {
+        this.strIngredient10 = strIngredient10;
+    }
+
+    public String getStrIngredient11() {
+        return strIngredient11;
+    }
+
+    public void setStrIngredient11(String strIngredient11) {
+        this.strIngredient11 = strIngredient11;
+    }
+
+    public String getStrIngredient12() {
+        return strIngredient12;
+    }
+
+    public void setStrIngredient12(String strIngredient12) {
+        this.strIngredient12 = strIngredient12;
+    }
+
+    public String getStrIngredient13() {
+        return strIngredient13;
+    }
+
+    public void setStrIngredient13(String strIngredient13) {
+        this.strIngredient13 = strIngredient13;
+    }
+
+    public String getStrIngredient14() {
+        return strIngredient14;
+    }
+
+    public void setStrIngredient14(String strIngredient14) {
+        this.strIngredient14 = strIngredient14;
+    }
+
+    public String getStrIngredient15() {
+        return strIngredient15;
+    }
+
+    public void setStrIngredient15(String strIngredient15) {
+        this.strIngredient15 = strIngredient15;
+    }
+
+    public String getStrIngredient16() {
+        return strIngredient16;
+    }
+
+    public void setStrIngredient16(String strIngredient16) {
+        this.strIngredient16 = strIngredient16;
+    }
+
+    public String getStrIngredient17() {
+        return strIngredient17;
+    }
+
+    public void setStrIngredient17(String strIngredient17) {
+        this.strIngredient17 = strIngredient17;
+    }
+
+    public String getStrIngredient18() {
+        return strIngredient18;
+    }
+
+    public void setStrIngredient18(String strIngredient18) {
+        this.strIngredient18 = strIngredient18;
+    }
+
+    public String getStrIngredient19() {
+        return strIngredient19;
+    }
+
+    public void setStrIngredient19(String strIngredient19) {
+        this.strIngredient19 = strIngredient19;
+    }
+
+    public String getStrIngredient20() {
+        return strIngredient20;
+    }
+
+    public void setStrIngredient20(String strIngredient20) {
+        this.strIngredient20 = strIngredient20;
+    }
+
+    public String getStrMeasure1() {
+        return strMeasure1;
+    }
+
+    public void setStrMeasure1(String strMeasure1) {
+        this.strMeasure1 = strMeasure1;
+    }
+
+    public String getStrMeasure2() {
+        return strMeasure2;
+    }
+
+    public void setStrMeasure2(String strMeasure2) {
+        this.strMeasure2 = strMeasure2;
+    }
+
+    public String getStrMeasure3() {
+        return strMeasure3;
+    }
+
+    public void setStrMeasure3(String strMeasure3) {
+        this.strMeasure3 = strMeasure3;
+    }
+
+    public String getStrMeasure4() {
+        return strMeasure4;
+    }
+
+    public void setStrMeasure4(String strMeasure4) {
+        this.strMeasure4 = strMeasure4;
+    }
+
+    public String getStrMeasure5() {
+        return strMeasure5;
+    }
+
+    public void setStrMeasure5(String strMeasure5) {
+        this.strMeasure5 = strMeasure5;
+    }
+
+    public String getStrMeasure6() {
+        return strMeasure6;
+    }
+
+    public void setStrMeasure6(String strMeasure6) {
+        this.strMeasure6 = strMeasure6;
+    }
+
+    public String getStrMeasure7() {
+        return strMeasure7;
+    }
+
+    public void setStrMeasure7(String strMeasure7) {
+        this.strMeasure7 = strMeasure7;
+    }
+
+    public String getStrMeasure8() {
+        return strMeasure8;
+    }
+
+    public void setStrMeasure8(String strMeasure8) {
+        this.strMeasure8 = strMeasure8;
+    }
+
+    public String getStrMeasure9() {
+        return strMeasure9;
+    }
+
+    public void setStrMeasure9(String strMeasure9) {
+        this.strMeasure9 = strMeasure9;
+    }
+
+    public String getStrMeasure10() {
+        return strMeasure10;
+    }
+
+    public void setStrMeasure10(String strMeasure10) {
+        this.strMeasure10 = strMeasure10;
+    }
+
+    public String getStrMeasure11() {
+        return strMeasure11;
+    }
+
+    public void setStrMeasure11(String strMeasure11) {
+        this.strMeasure11 = strMeasure11;
+    }
+
+    public String getStrMeasure12() {
+        return strMeasure12;
+    }
+
+    public void setStrMeasure12(String strMeasure12) {
+        this.strMeasure12 = strMeasure12;
+    }
+
+    public String getStrMeasure13() {
+        return strMeasure13;
+    }
+
+    public void setStrMeasure13(String strMeasure13) {
+        this.strMeasure13 = strMeasure13;
+    }
+
+    public String getStrMeasure14() {
+        return strMeasure14;
+    }
+
+    public void setStrMeasure14(String strMeasure14) {
+        this.strMeasure14 = strMeasure14;
+    }
+
+    public String getStrMeasure15() {
+        return strMeasure15;
+    }
+
+    public void setStrMeasure15(String strMeasure15) {
+        this.strMeasure15 = strMeasure15;
+    }
+
+    public String getStrMeasure16() {
+        return strMeasure16;
+    }
+
+    public void setStrMeasure16(String strMeasure16) {
+        this.strMeasure16 = strMeasure16;
+    }
+
+    public String getStrMeasure17() {
+        return strMeasure17;
+    }
+
+    public void setStrMeasure17(String strMeasure17) {
+        this.strMeasure17 = strMeasure17;
+    }
+
+    public String getStrMeasure19() {
+        return strMeasure19;
+    }
+
+    public void setStrMeasure19(String strMeasure19) {
+        this.strMeasure19 = strMeasure19;
+    }
+
+    public String getStrMeasure20() {
+        return strMeasure20;
+    }
+
+    public void setStrMeasure20(String strMeasure20) {
+        this.strMeasure20 = strMeasure20;
+    }
+
+    public String getStrMeasure18() {
+        return strMeasure18;
+    }
+
+    public void setStrMeasure18(String strMeasure18) {
+        this.strMeasure18 = strMeasure18;
+    }
 
     // Add getters and setters
     public String getDrinkAlternate() {return drinkAlternate;}
@@ -79,129 +396,6 @@ public class Meal implements Serializable {
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
 
-
-    public String getIngredient1() { return ingredient1; }
-    public void setIngredient1(String ingredient1) { this.ingredient1 = ingredient1; }
-
-
-    public String getIngredient2() { return ingredient2; }
-    public void setIngredient2(String ingredient2) { this.ingredient2 = ingredient2; }
-
-    public String getIngredient3() { return ingredient3; }
-    public void setIngredient3(String ingredient3) { this.ingredient3 = ingredient3; }
-
-    public String getIngredient4() { return ingredient4; }
-    public void setIngredient4(String ingredient4) { this.ingredient4 = ingredient4; }
-
-    public String getIngredient5() { return ingredient5; }
-    public void setIngredient5(String ingredient5) { this.ingredient5 = ingredient5; }
-
-    public String getIngredient6() { return ingredient6; }
-    public void setIngredient6(String ingredient6) { this.ingredient6 = ingredient6; }
-
-
-    public String getIngredient7() { return ingredient7; }
-    public void setIngredient7(String ingredient7) { this.ingredient7 = ingredient7; }
-
-    public String getIngredient8() { return ingredient8; }
-    public void setIngredient8(String ingredient8) { this.ingredient8 = ingredient8; }
-
-    public String getIngredient9() { return ingredient9; }
-    public void setIngredient9(String ingredient9) { this.ingredient9 = ingredient9; }
-
-    public String getIngredient10() { return ingredient10; }
-    public void setIngredient10(String ingredient10) { this.ingredient10 = ingredient10; }
-
-    public String getIngredient11() { return ingredient11; }
-    public void setIngredient11(String ingredient11) { this.ingredient11 = ingredient11; }
-
-    public String getIngredient12() { return ingredient12; }
-    public void setIngredient12(String ingredient12) { this.ingredient12 = ingredient12; }
-
-    public String getIngredient13() { return ingredient13; }
-    public void setIngredient13(String ingredient13) { this.ingredient13 = ingredient13; }
-
-    public String getIngredient14() { return ingredient14; }
-    public void setIngredient14(String ingredient14) { this.ingredient14 = ingredient14; }
-
-    public String getIngredient15() { return ingredient15; }
-    public void setIngredient15(String ingredient15) { this.ingredient15 = ingredient15; }
-
-    public String getIngredient16() { return ingredient16; }
-    public void setIngredient16(String ingredient16) { this.ingredient16 = ingredient16; }
-
-    public String getIngredient17() { return ingredient17; }
-    public void setIngredient17(String ingredient17) { this.ingredient17 = ingredient17; }
-
-    public String getIngredient18() { return ingredient18; }
-    public void setIngredient18(String ingredient18) { this.ingredient18 = ingredient18; }
-
-    public String getIngredient19() { return ingredient19; }
-    public void setIngredient19(String ingredient19) { this.ingredient19 = ingredient19; }
-
-    public String getIngredient20() { return ingredient20; }
-    public void setIngredient20(String ingredient20) { this.ingredient20 = ingredient20; }
-
-
-    public String getMeasure1() { return measure1; }
-    public void setMeasure1(String measure1) { this.measure1 = measure1; }
-
-    public String getMeasure2() { return measure2; }
-    public void setMeasure2(String measure2) { this.measure2 = measure2; }
-
-    public String getMeasure3() { return measure3; }
-    public void setMeasure3(String measure3) { this.measure3 = measure3; }
-
-    public String getMeasure4() { return measure4; }
-    public void setMeasure4(String measure4) { this.measure4 = measure4; }
-
-    public String getMeasure5() { return measure5; }
-    public void setMeasure5(String measure5) { this.measure5 = measure5; }
-
-    public String getMeasure6() { return measure6; }
-    public void setMeasure6(String measure6) { this.measure6 = measure6; }
-
-    public String getMeasure7() { return measure7; }
-    public void setMeasure7(String measure7) { this.measure7 = measure7; }
-
-    public String getMeasure8() { return measure8; }
-    public void setMeasure8(String measure8) { this.measure8 = measure8; }
-
-    public String getMeasure9() { return measure9; }
-    public void setMeasure9(String measure9) { this.measure9 = measure9; }
-
-    public String getMeasure10() { return measure10; }
-    public void setMeasure10(String measure10) { this.measure10 = measure10; }
-
-    public String getMeasure11() { return measure11; }
-    public void setMeasure11(String measure11) { this.measure11 = measure11; }
-
-    public String getMeasure12() { return measure12; }
-    public void setMeasure12(String measure12) { this.measure12 = measure12; }
-
-    public String getMeasure13() { return measure13; }
-    public void setMeasure13(String measure13) { this.measure13 = measure13; }
-
-    public String getMeasure14() { return measure14; }
-    public void setMeasure14(String measure14) { this.measure14 = measure14; }
-
-    public String getMeasure15() { return measure15; }
-    public void setMeasure15(String measure15) { this.measure15 = measure15; }
-
-    public String getMeasure16() { return measure16; }
-    public void setMeasure16(String measure16) { this.measure16 = measure16; }
-
-    public String getMeasure17() { return measure17; }
-    public void setMeasure17(String measure17) { this.measure17 = measure17; }
-
-    public String getMeasure18() { return measure18; }
-    public void setMeasure18(String measure18) { this.measure18 = measure18; }
-
-    public String getMeasure19() { return measure19; }
-    public void setMeasure19(String measure19) { this.measure19 = measure19; }
-
-    public String getMeasure20() { return measure20; }
-    public void setMeasure20(String measure20) { this.measure20 = measure20; }
 
 
 
@@ -231,32 +425,32 @@ public class Meal implements Serializable {
 
     public String getStrMealThumb() { return strMealThumb; }
     public String getStrYoutube() { return strYoutube; }
-    public List<String> getNonNullIngredients()
-    {
-        List<String> allIngredients = getIngredients();
-        List<String> nonNullIngredients = new ArrayList<>();
-        for (String ingredient : allIngredients) {
-            if (ingredient != null && !ingredient.isEmpty()) {
-                nonNullIngredients.add(ingredient);
-            }
-        }
-
-        return nonNullIngredients;
-    }
+//    public List<String> getNonNullIngredients()
+//    {
+//        List<String> allIngredients = getIngredients();
+//        List<String> nonNullIngredients = new ArrayList<>();
+//        for (String ingredient : allIngredients) {
+//            if (ingredient != null && !ingredient.isEmpty()) {
+//                nonNullIngredients.add(ingredient);
+//            }
+//        }
+//
+//        return nonNullIngredients;
+//    }
 
     public List<String> getIngredients()
     {
-        return Arrays.asList(ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8,
-                ingredient9, ingredient10, ingredient11, ingredient12, ingredient13, ingredient14, ingredient15, ingredient16,
-                ingredient17, ingredient18, ingredient19, ingredient20);
+        return Arrays.asList(strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7, strIngredient8,
+                strIngredient9, strIngredient10, strIngredient11,strIngredient12, strIngredient13, strIngredient14, strIngredient15, strIngredient16,
+                strIngredient17, strIngredient18, strIngredient19, strIngredient20);
     }
 
 
 
     public List<String> getMeasures()
     {
-        return Arrays.asList(measure1, measure2, measure3, measure4, measure5, measure6, measure7, measure8,
-                measure9, measure10, measure11, measure12, measure13, measure14, measure15, measure16,
-                measure17, measure18, measure19, measure20);
+        return Arrays.asList(strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5, strMeasure6, strMeasure7, strMeasure8,
+                strMeasure9, strMeasure10, strMeasure11,strMeasure12, strMeasure10, strMeasure14,strMeasure15, strMeasure16,
+                strMeasure17, strMeasure18, strMeasure19,strMeasure20);
     }
 }

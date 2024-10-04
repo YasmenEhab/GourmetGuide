@@ -101,6 +101,12 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
 
 
         }
+        else {
+            holder.igredientName.setText("");
+            holder.indredientMeasure.setText("");  // Clear both ingredient and measure fields
+            holder.thumbnailimg.setImageDrawable(null);  // Optionally clear the image
+
+        }
 
 
             Log.i(TAG, "***** onBindViewHolder **************");
@@ -110,6 +116,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return ingredients.size();
+        return 10;
     }
 }
