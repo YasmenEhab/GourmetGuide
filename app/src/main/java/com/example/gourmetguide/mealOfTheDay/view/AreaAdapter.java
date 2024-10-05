@@ -75,6 +75,40 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder>{
 //        Glide.with(context)
 //                .load(p.get(position).getStrCategoryThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
 //                .into(holder.strAreaThumb);
+        String[] countryCodes = {
+                "us", // American
+                "gb", // British
+                "ca", // Canadian
+                "cn", // Chinese
+                "hr", // Croatian
+                "nl", // Dutch
+                "eg", // Egyptian
+                "ph", // Filipino
+                "fr", // French
+                "gr", // Greek
+                "in", // Indian
+                "ie", // Irish
+                "it", // Italian
+                "jm", // Jamaican
+                "jp", // Japanese
+                "ke", // Kenyan
+                "my", // Malaysian
+                "mx", // Mexican
+                "ma", // Moroccan
+                "pl", // Polish
+                "pt", // Portuguese
+                "ru", // Russian
+                "es", // Spanish
+                "th", // Thai
+                "tn", // Tunisian
+                "tr", // Turkish
+                "ua",
+                "",// Ukrainian
+                "vn"  // Vietnamese
+        };
+        String url = "https://flagcdn.com/160x120/"+countryCodes[position]+".png";
+        Log.d(TAG, "Image URL: " + url);
+        Glide.with(context).load(url).into(holder.strAreaThumb);
         holder.layout.setOnClickListener(v -> {
             // Intent to navigate to the new activity
             Intent intent = new Intent(context, AreaActivity.class);

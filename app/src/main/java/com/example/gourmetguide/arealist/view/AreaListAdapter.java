@@ -72,51 +72,13 @@ public class AreaListAdapter extends RecyclerView.Adapter<AreaListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull AreaListAdapter.ViewHolder holder, int position) {
         holder.titleview.setText(p.get(position).getStrMeal());
-        String[] countryCodes = {
-                "us", // American
-                "gb", // British
-                "ca", // Canadian
-                "cn", // Chinese
-                "hr", // Croatian
-                "nl", // Dutch
-                "eg", // Egyptian
-                "ph", // Filipino
-                "fr", // French
-                "gr", // Greek
-                "in", // Indian
-                "ie", // Irish
-                "it", // Italian
-                "jm", // Jamaican
-                "jp", // Japanese
-                "ke", // Kenyan
-                "my", // Malaysian
-                "mx", // Mexican
-                "ma", // Moroccan
-                "pl", // Polish
-                "pt", // Portuguese
-                "ru", // Russian
-                "es", // Spanish
-                "th", // Thai
-                "tn", // Tunisian
-                "tr", // Turkish
-                "ua",
-                "",// Ukrainian
-                "vn"  // Vietnamese
-        };
-        String url = "https://flagcdn.com/160x120/"+countryCodes[position]+".png";
 
-        //Glide.with(context).load(url).into(holder.thumbnailimg);
-        Glide.with(context).load(url)
-                .apply(new RequestOptions().override(200, 200)
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_foreground))
+
+
+
+        Glide.with(context)
+                .load(p.get(position).getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
                 .into(holder.thumbnailimg);
-
-
-
-//        Glide.with(context)
-//                .load(p.get(position).getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
-//                .into(holder.thumbnailimg);
         holder.btnShowDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
