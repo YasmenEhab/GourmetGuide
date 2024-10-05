@@ -3,6 +3,7 @@ package com.example.gourmetguide.mealOfTheDay.presenter;
 import android.util.Log;
 
 import com.example.gourmetguide.mealOfTheDay.view.MealDayView;
+import com.example.gourmetguide.model.Area;
 import com.example.gourmetguide.model.Category;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepository;
@@ -21,8 +22,6 @@ public class MealDayPresenterImpl implements MealDayPresenter, NetworkCallback {
         this._view = _view;
     }
 
-
-
     @Override
     public void getMeals() {
         _repo.fetchMealFromAPI(this);
@@ -35,6 +34,12 @@ public class MealDayPresenterImpl implements MealDayPresenter, NetworkCallback {
         _repo.fetchCategoryFromAPI(this);
     }
 
+    @Override
+    public void getAreas() {
+        Log.e("SearchCategoryPresenter", "  _repo.fetchCategoryFromAPI ");
+        _repo.fetchCountryFromAPI(this);
+    }
+
 
     @Override
     public void onSuccessfulResponse(List<Meal> meals) {
@@ -44,6 +49,11 @@ public class MealDayPresenterImpl implements MealDayPresenter, NetworkCallback {
     @Override
     public void onSuccessfulResponseCategory(List<Category> categories) {
         _view.showCategory(categories);
+    }
+
+    @Override
+    public void onSuccessfulResponseArea(List<Area> areas) {
+        _view.showCountry(areas);
     }
 
     @Override

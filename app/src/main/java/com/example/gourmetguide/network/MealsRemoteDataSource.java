@@ -16,7 +16,8 @@ public interface MealsRemoteDataSource {
 
     enum ApiType {
         RANDOM_MEAL,
-        CATEGORY
+        CATEGORY,
+        COUNTRY
     }
 
 }

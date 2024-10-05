@@ -4,4 +4,6 @@ import com.example.gourmetguide.model.Meal;
 
 public interface onMealClickListener {
     public void onClick(Meal meal);
+    public void onAreaClick(Meal meal);
+
 }

@@ -116,6 +116,24 @@
                 android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/category_item"
                 android:orientation="horizontal"/>
+
+            <TextView
+                android:id="@+id/second_recycler_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Local Delicacies"
+                android:textSize="24sp"
+                android:textColor="#1E1E1E"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Second RecyclerView for Local Delicacies -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_local_delicacies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/country_item"/>
         </LinearLayout>
 
 

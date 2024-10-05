@@ -1,44 +1,34 @@
-package com.example.gourmetguide.searchbycategory.presenter;
+package com.example.gourmetguide.categorylist.presenter;
 
-import android.util.Log;
-
-import com.example.gourmetguide.mealFav.view.MealFavView;
+import com.example.gourmetguide.categorylist.view.CategoryView;
 import com.example.gourmetguide.model.Area;
 import com.example.gourmetguide.model.Category;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepository;
 import com.example.gourmetguide.network.NetworkCallback;
-import com.example.gourmetguide.searchbycategory.view.MealSearchCategoryView;
+import com.example.gourmetguide.search.view.MealSearchView;
 
 import java.util.List;
 
-public class MealSearchCategoryPresenterImpl implements MealSearchCategoryPresenter , NetworkCallback {
-
-    private MealSearchCategoryView _view;
+public class CategoryViewPresenterImpl implements CategoryViewPresenter , NetworkCallback
+{
+    private CategoryView _view;
     private MealRepository _repo;
 
-    public MealSearchCategoryPresenterImpl(MealSearchCategoryView _view,MealRepository _repo)
-    {
-        this._repo = _repo;
+    public CategoryViewPresenterImpl(CategoryView _view, MealRepository _repo) {
         this._view = _view;
+        this._repo = _repo;
     }
-
     @Override
-    public void getMeals() {
-        _repo.fetchMealFromAPI(this);
+    public void getMeals(String category) {
+        _repo.getMealsByCategory(this, category);
+
     }
 
     @Override
     public void ShowDetails(Meal meal) {
 
     }
-
-    @Override
-    public void getCategories() {
-        Log.e("SearchCategoryPresenter", "  _repo.fetchCategoryFromAPI ");
-        _repo.fetchCategoryFromAPI(this);
-    }
-
 
     @Override
     public void onSuccessfulResponse(List<Meal> meals) {

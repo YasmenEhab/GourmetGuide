@@ -2,6 +2,8 @@ package com.example.gourmetguide.network;
 
 import android.util.Log;
 
+import com.example.gourmetguide.model.Area;
+import com.example.gourmetguide.model.AreaResponse;
 import com.example.gourmetguide.model.CategoryResponse;
 import com.example.gourmetguide.model.MealResponse;
 import retrofit2.Call;
@@ -98,6 +100,24 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
 
                     @Override
                     public void onFailure(Call<CategoryResponse> call, Throwable throwable) {
+                        networkCallback.onFailureResponse(throwable.getMessage());
+                    }
+                });
+                break;
+            case COUNTRY:
+                Call<AreaResponse> areaCall = mealService.getAreas();
+                areaCall.enqueue(new Callback<AreaResponse>() {
+                    @Override
+                    public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            networkCallback.onSuccessfulResponseArea(response.body().areas);
+                        } else {
+                            networkCallback.onFailureResponse("Error: Response not successful");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AreaResponse> call, Throwable throwable) {
                         networkCallback.onFailureResponse(throwable.getMessage());
                     }
                 });

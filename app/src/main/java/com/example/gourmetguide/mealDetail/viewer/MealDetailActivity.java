@@ -51,6 +51,7 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
     private RecyclerView recyclerViewSteps;
     private RecyclerView recyclerViewIngredients;
 
+
     private static final String TAG = "MealDetailActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,48 +75,50 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
         recyclerViewIngredients.setLayoutManager(new LinearLayoutManager(this));
 
         // Retrieve the Meal object from the intent
+
         Intent intent = getIntent();
-        currentMeal = (Meal) intent.getSerializableExtra("meal");
-        Log.d(TAG, "Intent extras: " + intent.getExtras());
-
-        if (currentMeal == null) {
-            Log.e(TAG, "Current meal is null, check the intent data");
-        }
-        else {
-            tvMealName.setText(currentMeal.getStrMeal());
-            tvMealOrigin.setText(currentMeal.getStrArea());
-
-            //List<String> ingredientList = currentMeal.getNonNullIngredients();  // Assuming this method returns a List<String>
-            //String[] ingredients = ingredientList.toArray(new String[0]);
-
-            webView.getSettings().setJavaScriptEnabled(true);
-            String videoUrl =currentMeal.strYoutube.replace("watch?v=", "embed/");
-            Log.d(TAG, "Video URL: " + videoUrl);
-            webView.loadUrl(videoUrl);
-
-            // Split instructions into steps and set adapter
-            String[] steps = currentMeal.getStrInstructions().split("\n"); // Assuming steps are separated by new lines
-            StepsAdapter adapter = new StepsAdapter(Arrays.asList(steps));
-            recyclerViewSteps.setAdapter(adapter);
-
-            Log.d("MealDetails", "Ingredients: " + currentMeal.getIngredients());
-            Log.d("MealDetails", "Measures: " + currentMeal.getMeasures());
-            IngredientAdapter adapter2 = new IngredientAdapter( currentMeal.getIngredients(),currentMeal.getMeasures(),this);
-            recyclerViewIngredients.setAdapter(adapter2);
-
-
-            Glide.with(this)
-                    .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
-                    .into(mealImage);
-            Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
-        }
-
-
-
-
+        String meal =  intent.getStringExtra("meal");
         // Set up the presenter
         presenter = new MealDetailPresenterImpl(this, MealRepositoryImpl.getInstance(MealsRemoteDataSourceImpl.getInstance(), MealsLocalDataSourceImpl.getInstance(this))) ;
-       // presenter.
+        presenter.getByMealName(meal);
+        Log.d(TAG, "Intent extras: " + intent.getExtras());
+
+//        if (currentMeal == null) {
+//            Log.e(TAG, "Current meal is null, check the intent data");
+//        }
+//        else {
+//            tvMealName.setText(currentMeal.getStrMeal());
+//            tvMealOrigin.setText(currentMeal.getStrArea());
+//
+//            //List<String> ingredientList = currentMeal.getNonNullIngredients();  // Assuming this method returns a List<String>
+//            //String[] ingredients = ingredientList.toArray(new String[0]);
+//
+//            webView.getSettings().setJavaScriptEnabled(true);
+//            String videoUrl =currentMeal.strYoutube.replace("watch?v=", "embed/");
+//            Log.d(TAG, "Video URL: " + videoUrl);
+//            webView.loadUrl(videoUrl);
+//
+//            // Split instructions into steps and set adapter
+//            String[] steps = currentMeal.getStrInstructions().split("\n"); // Assuming steps are separated by new lines
+//            StepsAdapter adapter = new StepsAdapter(Arrays.asList(steps));
+//            recyclerViewSteps.setAdapter(adapter);
+//
+//            Log.d("MealDetails", "Ingredients: " + currentMeal.getIngredients());
+//            Log.d("MealDetails", "Measures: " + currentMeal.getMeasures());
+//            IngredientAdapter adapter2 = new IngredientAdapter( currentMeal.getIngredients(),currentMeal.getMeasures(),this);
+//            recyclerViewIngredients.setAdapter(adapter2);
+//
+//
+//            Glide.with(this)
+//                    .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
+//                    .into(mealImage);
+//            Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
+//        }
+
+
+
+
+         // presenter.
 
         btnAddFav.setOnClickListener(v -> {
             if (currentMeal != null) {
@@ -144,23 +147,34 @@ public class MealDetailActivity extends AppCompatActivity implements onMealDetai
 
     @Override
     public void showData(List<Meal> meals) {
-//            if (meals != null && !meals.isEmpty()) {
-//            Log.d(TAG, "showData called with meals: " + meals.size());
-//            currentMeal = meals.get(0);
-//
-//            // Update UI with meal details
-//            tvMealName.setText(currentMeal.getStrMeal());
-//            tvMealOrigin.setText(currentMeal.getStrArea());
-//
-//            Glide.with(this)
-//                    .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
-//                    .into(mealImage);
-//            Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
-//        }
-//        else
-//        {
-//            Log.d(TAG, "No meals received to display");
-//        }
+
+            currentMeal=meals.get(0);
+            tvMealName.setText(currentMeal.getStrMeal());
+            tvMealOrigin.setText(currentMeal.getStrArea());
+
+            //List<String> ingredientList = currentMeal.getNonNullIngredients();  // Assuming this method returns a List<String>
+            //String[] ingredients = ingredientList.toArray(new String[0]);
+
+            webView.getSettings().setJavaScriptEnabled(true);
+            String videoUrl =currentMeal.strYoutube.replace("watch?v=", "embed/");
+            Log.d(TAG, "Video URL: " + videoUrl);
+            webView.loadUrl(videoUrl);
+
+            // Split instructions into steps and set adapter
+            String[] steps = currentMeal.getStrInstructions().split("\n"); // Assuming steps are separated by new lines
+            StepsAdapter adapter = new StepsAdapter(Arrays.asList(steps));
+            recyclerViewSteps.setAdapter(adapter);
+
+            Log.d("MealDetails", "Ingredients: " + currentMeal.getIngredients());
+            Log.d("MealDetails", "Measures: " + currentMeal.getMeasures());
+            IngredientAdapter adapter2 = new IngredientAdapter( currentMeal.getIngredients(),currentMeal.getMeasures(),this);
+            recyclerViewIngredients.setAdapter(adapter2);
+
+
+            Glide.with(this)
+                    .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
+                    .into(mealImage);
+            Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
 
     }
 

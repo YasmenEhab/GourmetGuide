@@ -16,7 +16,7 @@
 
         <!-- Category Image -->
         <ImageView
-            android:id="@+id/category_image"
+            android:id="@+id/country_image"
             android:layout_width="97dp"
             android:layout_height="84dp"
             android:background="@drawable/rounded_corners"
@@ -26,12 +26,12 @@
 
         <!-- Category Name -->
         <TextView
-            android:id="@+id/category_name"
+            android:id="@+id/country_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Category Name"
+            android:text="Country Name"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -39,4 +39,3 @@
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
-

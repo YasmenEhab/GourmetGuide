@@ -9,4 +9,5 @@ public interface MealDetailView {
     public void showErrMsg (String error);
     void showConfirmationMessage(String message);
 
+
 }

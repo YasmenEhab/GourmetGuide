@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 
 import com.example.gourmetguide.R;
+import com.example.gourmetguide.categorylist.view.CategoryActivity;
 import com.example.gourmetguide.db.MealsLocalDataSourceImpl;
 import com.example.gourmetguide.mealDetail.viewer.MealDetailActivity;
 import com.example.gourmetguide.mealFav.presenter.MealFavPresenterImpl;
@@ -148,8 +149,12 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
     @Override
     public void onClick(Meal meal) {
         Intent intent = new Intent(requireContext(), MealDetailActivity.class);
-        intent.putExtra("meal", meal); // Pass the meal object to the details screen
+        intent.putExtra("meal", meal.getStrMeal());
+        Log.d(TAG, "Meal data displayed: " + meal.getStrMeal());
+        Log.d("MealDetails", "Ingredients: " + meal.getIngredients());
+        Log.d("MealDetails", "Measures: " + meal.getMeasures());
         startActivity(intent);
+
     }
 
     @Override

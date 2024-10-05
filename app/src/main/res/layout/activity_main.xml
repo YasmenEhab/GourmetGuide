@@ -23,7 +23,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#B00005"
+
+        android:background="@drawable/btn_shape"
         app:menu="@menu/bootom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

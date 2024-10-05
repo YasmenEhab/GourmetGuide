@@ -73,10 +73,11 @@ public class MealRepositoryImpl implements MealRepository {
         remoteDataSource.makeNetworkCall2(callback, MealsRemoteDataSource.ApiType.CATEGORY);
     }
 
-//    public void getIngredients(NetworkCallback networkCallback)
-//    {
-//        remoteDataSource.getIngredientsFromNetwork(networkCallback);
-//    }
+    @Override
+    public void fetchCountryFromAPI(NetworkCallback callback) {
+        remoteDataSource.makeNetworkCall2(callback,MealsRemoteDataSource.ApiType.COUNTRY);
+    }
+
     public void getMealsByCategory(NetworkCallback networkCallback, String category)
     {
         remoteDataSource.getMealsByCategoryFromNetwork(networkCallback, category);

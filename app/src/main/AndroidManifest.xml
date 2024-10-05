@@ -15,14 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GourmetGuide"
         tools:targetApi="31">
-
-        <!-- Lock SearchByCategoryActivity to portrait -->
+        <activity
+            android:name=".arealist.view.AreaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".categorylist.view.CategoryActivity"
+            android:exported="false" /> <!-- Lock SearchByCategoryActivity to portrait -->
         <activity
             android:name=".searchbycategory.view.SearchByCategoryActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- Set SplashScreenActivity as the launcher activity -->
+            android:screenOrientation="portrait" /> <!-- Set SplashScreenActivity as the launcher activity -->
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
@@ -30,17 +32,14 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Lock MealDetailActivity to portrait -->
+        </activity> <!-- Lock MealDetailActivity to portrait -->
         <activity
             android:name=".mealDetail.viewer.MealDetailActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- Lock MainActivity to portrait -->
+            android:screenOrientation="portrait" /> <!-- Lock MainActivity to portrait -->
         <activity
             android:name=".MainActivity"
             android:exported="true"

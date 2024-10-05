@@ -18,6 +18,7 @@ import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.example.gourmetguide.R;
+import com.example.gourmetguide.categorylist.view.CategoryActivity;
 import com.example.gourmetguide.db.MealsLocalDataSourceImpl;
 import com.example.gourmetguide.mealDetail.viewer.MealDetailActivity;
 import com.example.gourmetguide.mealplan.presenter.PlanPresenter;
@@ -121,9 +122,16 @@ public class MealPlanFragment extends Fragment  implements onMealPlanClickListen
 
     @Override
     public void onClick(MealPlan mealPlan) {
-        Meal meal = mealPlan.getMeal();
+       Meal meal = mealPlan.getMeal();
+//        Intent intent = new Intent(getContext(), MealDetailActivity.class);
+//        intent.putExtra("meal", meal);
+//        startActivity(intent);
+
         Intent intent = new Intent(getContext(), MealDetailActivity.class);
-        intent.putExtra("meal", meal);
+        intent.putExtra("meal", meal.getStrMeal());
+        Log.d(TAG, "Meal data displayed: " + meal.getStrMeal());
+        Log.d("MealDetails", "Ingredients: " + meal.getIngredients());
+        Log.d("MealDetails", "Measures: " + meal.getMeasures());
         startActivity(intent);
 
     }

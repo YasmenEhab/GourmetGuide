@@ -16,29 +16,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.gourmetguide.R;
+import com.example.gourmetguide.arealist.view.AreaActivity;
 import com.example.gourmetguide.categorylist.view.CategoryActivity;
-import com.example.gourmetguide.model.Category;
-import com.example.gourmetguide.searchbycategory.view.SearchByCategoryAdapter2;
-import com.example.gourmetguide.searchbycategory.view.onMealSearchCategoryClickListener;
+import com.example.gourmetguide.model.Area;
 
 import java.util.List;
 
-public class MealDayAdapter extends RecyclerView.Adapter<MealDayAdapter.ViewHolder>{
+public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder>{
 
     private final Context context;
-    private List<Category> p;
-    private static final String TAG = "Category Recycler viewer";
+    private List<Area> p;
+    private static final String TAG = "Area Recycler viewer";
     private onMealClickListener listener;
 
-    public MealDayAdapter(List<Category> c, Context context, onMealClickListener _listener ) {
+    public AreaAdapter(List<Area> c, Context context, onMealClickListener _listener ) {
         this.context = (Context) context;
         this.p = c;
         this.listener=_listener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView strCategory ;
-        ImageView strCategoryThumb;
+        TextView strArea;
+        ImageView strAreaThumb;
         LinearLayout linearLayout;
         View layout;
         //Button viewDetail;
@@ -48,42 +47,39 @@ public class MealDayAdapter extends RecyclerView.Adapter<MealDayAdapter.ViewHold
         public ViewHolder(@NonNull View v) {
             super(v);
             layout = v;
-            strCategory = v.findViewById(R.id.category_name);
-            strCategoryThumb = v.findViewById(R.id.category_image);
+            strArea = v.findViewById(R.id.country_name);
+            strAreaThumb = v.findViewById(R.id.country_image);
             //linearLayout = v.findViewById(R.id.linLayout);
             // viewDetail = v.findViewById(R.id.btn_show_detail);
 
-
         }
     }
-
-    public void setList(List<Category> categories) {
-        this.p =categories;
+    public void setList(List<Area> areas) {
+        this.p =areas;
     }
-
     @NonNull
     @Override
-    public MealDayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AreaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.category_item, parent, false);
-        MealDayAdapter.ViewHolder vh = new MealDayAdapter.ViewHolder(v);
+        View v = inflater.inflate(R.layout.country_item, parent, false);
+        AreaAdapter.ViewHolder vh = new AreaAdapter.ViewHolder(v);
         Log.i(TAG, "===== onCreateViewHolder =====");
         Log.i(TAG, "deals with inflation of the card layout as item for recycler view");
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MealDayAdapter.ViewHolder holder, int position) {
-        Category category = p.get(position);
-        holder.strCategory.setText(p.get(position).getStrCategory());
-        Glide.with(context)
-                .load(p.get(position).getStrCategoryThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
-                .into(holder.strCategoryThumb);
+    public void onBindViewHolder(@NonNull AreaAdapter.ViewHolder holder, int position) {
+        Area area = p.get(position);
+        holder.strArea.setText(p.get(position).getStrArea());
+//        Glide.with(context)
+//                .load(p.get(position).getStrCategoryThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
+//                .into(holder.strAreaThumb);
         holder.layout.setOnClickListener(v -> {
             // Intent to navigate to the new activity
-            Intent intent = new Intent(context, CategoryActivity.class);
-            intent.putExtra("CATEGORY_NAME", category.getStrCategory());
-            Log.i(TAG, "send category" + category.getStrCategory());
+            Intent intent = new Intent(context, AreaActivity.class);
+            intent.putExtra("COUNTRY_NAME", area.getStrArea());
+            Log.i(TAG, "send country" + area.getStrArea());
             context.startActivity(intent);
         });
 
@@ -94,8 +90,6 @@ public class MealDayAdapter extends RecyclerView.Adapter<MealDayAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        //Log.i(TAG, "***** getItemCount **************");
-        //Log.i(TAG, "return length of recycler view ");
         return p.size();
     }
 }

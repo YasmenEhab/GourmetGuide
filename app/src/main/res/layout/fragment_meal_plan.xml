@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="#FFEBDA"
     android:padding="16dp">
 
     <!-- CalendarView for selecting a date -->

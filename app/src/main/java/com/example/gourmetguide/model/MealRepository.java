@@ -13,6 +13,7 @@ public interface MealRepository {
     void insertMeal(Meal meal);
     void fetchMealFromAPI  (NetworkCallback callback);
     public void fetchCategoryFromAPI(NetworkCallback callback);
+    public void fetchCountryFromAPI(NetworkCallback callback);
     public void getMealsByName(NetworkCallback networkCallback, String mealName);
     public void getMealsByCategory(NetworkCallback networkCallback, String category);
     public void getMealsByCountry(NetworkCallback networkCallback, String country);

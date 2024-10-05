@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.gourmetguide.mealOfTheDay.presenter.MealDayPresenter;
 import com.example.gourmetguide.mealOfTheDay.view.MealDayView;
+import com.example.gourmetguide.model.Area;
 import com.example.gourmetguide.model.Category;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepository;
@@ -41,6 +42,11 @@ public class MealSearchPresenterImpl implements MealSearchPresenter, NetworkCall
     @Override
     public void onSuccessfulResponseCategory(List<Category> categories) {
         _view.showCategory(categories);
+    }
+
+    @Override
+    public void onSuccessfulResponseArea(List<Area> areas) {
+
     }
 
     @Override

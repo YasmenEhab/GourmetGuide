@@ -23,6 +23,7 @@ import com.example.gourmetguide.db.MealsLocalDataSourceImpl;
 import com.example.gourmetguide.mealDetail.viewer.MealDetailActivity;
 import com.example.gourmetguide.mealOfTheDay.presenter.MealDayPresenter;
 import com.example.gourmetguide.mealOfTheDay.presenter.MealDayPresenterImpl;
+import com.example.gourmetguide.model.Area;
 import com.example.gourmetguide.model.Category;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepositoryImpl;
@@ -42,10 +43,9 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
     private Meal currentMeal;
 
     private RecyclerView recyclerViewCategory;
+    private RecyclerView recyclerViewCountry;
     private MealDayAdapter mealCategoryAdapter;
-    LinearLayoutManager linearLayout;
-
-
+    private AreaAdapter mealAreaAdapter;
 
     private static final String TAG = "MealDayFragment"; // Log tag
 
@@ -69,8 +69,9 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         mealImage = view.findViewById(R.id.meal_image);
         btnViewDetails = view.findViewById(R.id.btn_view_details);
         recyclerViewCategory = view.findViewById(R.id.recycler_view_categories);
+        recyclerViewCountry = view.findViewById(R.id.recycler_view_local_delicacies);
 
-        // Setup RecyclerView
+        // Setup RecyclerView for category
         recyclerViewCategory.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false); // Horizontal layout
         recyclerViewCategory.setLayoutManager(layoutManager);
@@ -78,10 +79,22 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         mealCategoryAdapter = new MealDayAdapter(new ArrayList<>(), requireContext(), this);
         recyclerViewCategory.setAdapter(mealCategoryAdapter);
 
+
+        // Setup RecyclerView for country
+        recyclerViewCountry.setHasFixedSize(true);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false); // Horizontal layout
+        recyclerViewCountry.setLayoutManager(layoutManager2);
+        Log.i(TAG, " country adapter ");
+        mealAreaAdapter = new AreaAdapter(new ArrayList<>(), requireContext(), this);
+        recyclerViewCountry.setAdapter(mealAreaAdapter);
+
+
+
         // Set up the presenter
         presenter = new MealDayPresenterImpl(this, MealRepositoryImpl.getInstance(MealsRemoteDataSourceImpl.getInstance(), MealsLocalDataSourceImpl.getInstance(requireContext())));
         presenter.getMeals();
         presenter.getCategories();
+        presenter.getAreas();
 
         // Set up button click listener to trigger onClick(Meal meal) method
         btnViewDetails.setOnClickListener(v -> {
@@ -109,19 +122,26 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
             currentMeal = meals.get(0);
             Log.d("MealDay", "Ingredients: " + currentMeal.getIngredients());
             Log.d("MealDay", "Measures: " + currentMeal.getMeasures());
-            // Update UI with meal details
-            tvMealName.setText(currentMeal.getStrMeal());
-            tvMealOrigin.setText(currentMeal.getStrArea());
-            Glide.with(requireContext())
-                    .load(currentMeal.getStrMealThumb()).apply(new RequestOptions().override(200,200)).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground)
-                    .into(mealImage);
-            Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
-        }
-        else
-        {
+
+            // Check if the fragment is still added to its activity
+            if (isAdded()) {
+                // Update UI with meal details
+                tvMealName.setText(currentMeal.getStrMeal());
+                tvMealOrigin.setText(currentMeal.getStrArea());
+
+                Glide.with(requireContext())
+                        .load(currentMeal.getStrMealThumb())
+                        .apply(new RequestOptions().override(200, 200))
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_foreground)
+                        .into(mealImage);
+                Log.d(TAG, "Meal data displayed: " + currentMeal.getStrMeal());
+            } else {
+                Log.d(TAG, "Fragment not attached, cannot update UI.");
+            }
+        } else {
             Log.d(TAG, "No meals received to display");
         }
-
 
     }
 
@@ -141,17 +161,26 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         mealCategoryAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showCountry(List<Area> areas) {
+        mealAreaAdapter.setList(areas);
+        mealAreaAdapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public void onClick(Meal meal) {
         Log.d(TAG, "onClick triggered for meal: " + meal.getStrMeal());
-        // Handle the click event to navigate to the MealDetailActivity
         Intent intent = new Intent(requireContext(), MealDetailActivity.class);
-       //Ensure that the  Meal implements Serializable or Parcelable. This is necessary for Android to be able to serialize the object and pass it between activities.
-        intent.putExtra("meal", meal); // Pass the meal object to the details screen
+        intent.putExtra("meal", meal);
         Log.d(TAG, "Meal object added to intent: " + meal.getStrMeal());
         startActivity(intent);
         Log.d(TAG, "Started MealDetailActivity with meal: " + meal.getStrMeal());
+
+    }
+
+    @Override
+    public void onAreaClick(Meal meal) {
 
     }
 }
