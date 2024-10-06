@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +52,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryView 
 
         recyclerView =findViewById(R.id.recycler_view_meals);
         recyclerView.setHasFixedSize(true);
-
+        //GridLayoutManager linearLayout = new GridLayoutManager(this, 2);
         linearLayout = new LinearLayoutManager(this);
         mealAdapter = new CategoryViewAdapter(new ArrayList<>(),this,  this);
 

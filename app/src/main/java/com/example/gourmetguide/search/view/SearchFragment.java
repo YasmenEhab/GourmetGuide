@@ -44,7 +44,7 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
     SearchAdapter mealAdapter;
 
     private static final String TAG = "SearchFragment";
-   // private String currentFilterType = "country";
+    // private String currentFilterType = "country";
     int position = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
         SearchView searchView = view.findViewById(R.id.search_bar);
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
 
-       // presenter.getMeals();
+        // presenter.getMeals();
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -139,6 +139,7 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
                 {
                     presenter.serchByMealName(newText);
                 }
+
 
                 return true; // Return true to indicate the change has been handled
             }

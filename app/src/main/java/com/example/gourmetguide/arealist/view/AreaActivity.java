@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +49,7 @@ public class AreaActivity extends AppCompatActivity implements onAreaClickLIsten
 
         recyclerView =findViewById(R.id.recycler_view_meals_2);
         recyclerView.setHasFixedSize(true);
+       // GridLayoutManager linearLayout = new GridLayoutManager(this, 2);
 
         linearLayout = new LinearLayoutManager(this);
         mealAdapter = new AreaListAdapter(new ArrayList<>(),this,  this);
