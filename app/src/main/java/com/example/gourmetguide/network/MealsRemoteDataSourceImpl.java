@@ -1,6 +1,7 @@
 package com.example.gourmetguide.network;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.gourmetguide.model.Area;
 import com.example.gourmetguide.model.AreaResponse;
@@ -133,8 +134,16 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                 if(response.isSuccessful()){
-                    Log.i("MainActivity", "onResponse: name  " + response.body().meals);
-                    networkCallback.onSuccessfulResponse(response.body().meals);
+                    if(response.body() != null && response.body().meals !=null && !(response.body().meals.isEmpty()) )
+                    {
+                        Log.i("MainActivity", "onResponse: name  " + response.body().meals);
+                        networkCallback.onSuccessfulResponse(response.body().meals);
+                    }
+                    else
+                    {
+                        networkCallback.onFailureResponse("No Resault");
+                    }
+
                 }
             }
 
@@ -151,8 +160,21 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                 if(response.isSuccessful()){
-                    Log.i("MainActivity", "onResponse: " + response.body().meals);
-                    networkCallback.onSuccessfulResponse(response.body().meals);
+
+                    if(response.body() != null && response.body().meals !=null && !(response.body().meals.isEmpty()) )
+                    {
+                        Log.i("MainActivity", "onResponse: name  " + response.body().meals);
+                        networkCallback.onSuccessfulResponse(response.body().meals);
+                    }
+                    else
+                    {
+                        networkCallback.onFailureResponse("No Resault");
+                    }
+
+
+
+//                    Log.i("MainActivity", "onResponse: " + response.body().meals);
+//                    networkCallback.onSuccessfulResponse(response.body().meals);
                 }
             }
 
@@ -169,8 +191,17 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                 if(response.isSuccessful()){
-                    Log.i("MainActivity", "onResponse: country " + response.body().meals);
-                    networkCallback.onSuccessfulResponse(response.body().meals);
+                    if(response.body() != null && response.body().meals !=null && !(response.body().meals.isEmpty()) )
+                    {
+                        Log.i("MainActivity", "onResponse: name  " + response.body().meals);
+                        networkCallback.onSuccessfulResponse(response.body().meals);
+                    }
+                    else
+                    {
+                        networkCallback.onFailureResponse("No Resault");
+                    }
+//                    Log.i("MainActivity", "onResponse: country " + response.body().meals);
+//                    networkCallback.onSuccessfulResponse(response.body().meals);
                 }
             }
 
@@ -187,8 +218,17 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                 if(response.isSuccessful()){
-                    Log.i("MainActivity", "onResponse: " + response.body().meals);
-                    networkCallback.onSuccessfulResponse(response.body().meals);
+                    if(response.body() != null && response.body().meals !=null && !(response.body().meals.isEmpty()) )
+                    {
+                        Log.i("MainActivity", "onResponse: name  " + response.body().meals);
+                        networkCallback.onSuccessfulResponse(response.body().meals);
+                    }
+                    else
+                    {
+                        networkCallback.onFailureResponse("No Resault");
+                    }
+//                    Log.i("MainActivity", "onResponse: " + response.body().meals);
+//                    networkCallback.onSuccessfulResponse(response.body().meals);
                 }
             }
 

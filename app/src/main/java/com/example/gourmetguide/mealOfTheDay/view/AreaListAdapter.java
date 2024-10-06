@@ -14,22 +14,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.gourmetguide.R;
 import com.example.gourmetguide.arealist.view.AreaActivity;
-import com.example.gourmetguide.categorylist.view.CategoryActivity;
 import com.example.gourmetguide.model.Area;
 
 import java.util.List;
 
-public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder>{
+public class AreaListAdapter extends RecyclerView.Adapter<AreaListAdapter.ViewHolder>{
 
     private final Context context;
     private List<Area> p;
     private static final String TAG = "Area Recycler viewer";
     private onMealClickListener listener;
 
-    public AreaAdapter(List<Area> c, Context context, onMealClickListener _listener ) {
+    public AreaListAdapter(List<Area> c, Context context, onMealClickListener _listener ) {
         this.context = (Context) context;
         this.p = c;
         this.listener=_listener;
@@ -59,17 +57,17 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder>{
     }
     @NonNull
     @Override
-    public AreaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AreaListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.country_item, parent, false);
-        AreaAdapter.ViewHolder vh = new AreaAdapter.ViewHolder(v);
+        AreaListAdapter.ViewHolder vh = new AreaListAdapter.ViewHolder(v);
         Log.i(TAG, "===== onCreateViewHolder =====");
         Log.i(TAG, "deals with inflation of the card layout as item for recycler view");
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AreaAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AreaListAdapter.ViewHolder holder, int position) {
         Area area = p.get(position);
         holder.strArea.setText(p.get(position).getStrArea());
 //        Glide.with(context)

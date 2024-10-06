@@ -77,6 +77,11 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                mealAdapter.setList(new ArrayList<>());
+
+                mealAdapter.notifyDataSetChanged();
+
+
                 // Get the selected tab position
                 position = tab.getPosition();
 
@@ -164,7 +169,7 @@ public class SearchFragment extends Fragment implements onMealSearchClickListene
         Meal firstMeal = meals.get(0);
         List<String> ingredients = firstMeal.getIngredients();
         String firstIngredient = ingredients.get(0);
-        Toast.makeText(getContext(), "First Ingredient: " + firstIngredient, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), "First Ingredient: " + firstIngredient, Toast.LENGTH_SHORT).show();
         mealAdapter.setList(meals);
 
         mealAdapter.notifyDataSetChanged();

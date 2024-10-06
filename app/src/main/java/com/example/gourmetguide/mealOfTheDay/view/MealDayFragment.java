@@ -28,7 +28,6 @@ import com.example.gourmetguide.model.Category;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepositoryImpl;
 import com.example.gourmetguide.network.MealsRemoteDataSourceImpl;
-import com.example.gourmetguide.searchbycategory.view.SearchByCategoryAdapter2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +43,8 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
 
     private RecyclerView recyclerViewCategory;
     private RecyclerView recyclerViewCountry;
-    private MealDayAdapter mealCategoryAdapter;
-    private AreaAdapter mealAreaAdapter;
+    private CategoryListAdapter mealCategoryAdapter;
+    private AreaListAdapter mealAreaListAdapter;
 
     private static final String TAG = "MealDayFragment"; // Log tag
 
@@ -76,7 +75,7 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false); // Horizontal layout
         recyclerViewCategory.setLayoutManager(layoutManager);
         Log.i(TAG, " categories adapter ");
-        mealCategoryAdapter = new MealDayAdapter(new ArrayList<>(), requireContext(), this);
+        mealCategoryAdapter = new CategoryListAdapter(new ArrayList<>(), requireContext(), this);
         recyclerViewCategory.setAdapter(mealCategoryAdapter);
 
 
@@ -85,8 +84,8 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false); // Horizontal layout
         recyclerViewCountry.setLayoutManager(layoutManager2);
         Log.i(TAG, " country adapter ");
-        mealAreaAdapter = new AreaAdapter(new ArrayList<>(), requireContext(), this);
-        recyclerViewCountry.setAdapter(mealAreaAdapter);
+        mealAreaListAdapter = new AreaListAdapter(new ArrayList<>(), requireContext(), this);
+        recyclerViewCountry.setAdapter(mealAreaListAdapter);
 
 
 
@@ -163,8 +162,8 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
 
     @Override
     public void showCountry(List<Area> areas) {
-        mealAreaAdapter.setList(areas);
-        mealAreaAdapter.notifyDataSetChanged();
+        mealAreaListAdapter.setList(areas);
+        mealAreaListAdapter.notifyDataSetChanged();
     }
 
 
@@ -172,15 +171,12 @@ public class MealDayFragment extends Fragment implements onMealClickListener ,Me
     public void onClick(Meal meal) {
         Log.d(TAG, "onClick triggered for meal: " + meal.getStrMeal());
         Intent intent = new Intent(requireContext(), MealDetailActivity.class);
-        intent.putExtra("meal", meal);
+        intent.putExtra("meal", meal.getStrMeal());
         Log.d(TAG, "Meal object added to intent: " + meal.getStrMeal());
         startActivity(intent);
         Log.d(TAG, "Started MealDetailActivity with meal: " + meal.getStrMeal());
 
     }
 
-    @Override
-    public void onAreaClick(Meal meal) {
 
-    }
 }

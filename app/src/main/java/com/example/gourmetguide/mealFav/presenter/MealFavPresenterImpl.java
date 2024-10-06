@@ -30,4 +30,9 @@ public class MealFavPresenterImpl implements MealFavPresenter{
     public void deleteFromFav(Meal meal) {
         _repo.deleteMeal(meal);
     }
+
+    @Override
+    public void addToFav(Meal meal) {
+        _repo.insertMeal(meal);
+    }
 }

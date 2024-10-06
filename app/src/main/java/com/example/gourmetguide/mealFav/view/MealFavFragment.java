@@ -25,6 +25,7 @@ import com.example.gourmetguide.mealFav.presenter.MealFavPresenterImpl;
 import com.example.gourmetguide.model.Meal;
 import com.example.gourmetguide.model.MealRepositoryImpl;
 import com.example.gourmetguide.network.MealsRemoteDataSourceImpl;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,5 +103,19 @@ public class MealFavFragment extends Fragment implements onMealFavClickListener 
     @Override
     public void onClick(Meal meal) {
         favPresenter.deleteFromFav(meal);
+        showUndoSnackbar(meal);
+        //favPresenter.addToFav(meal);
     }
+    private void showUndoSnackbar(Meal deletedMeal) {
+        Snackbar snackbar = Snackbar.make(favRecyclerView, "Meal deleted", Snackbar.LENGTH_LONG);
+        snackbar.setAction("Undo", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favPresenter.addToFav(deletedMeal);  // Add the meal back if undo is clicked
+            }
+        });
+        snackbar.show();
+    }
+
+
 }

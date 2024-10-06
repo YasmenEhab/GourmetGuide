@@ -25,18 +25,18 @@ public class MealDayPresenterImpl implements MealDayPresenter, NetworkCallback {
     @Override
     public void getMeals() {
         _repo.fetchMealFromAPI(this);
-        Log.i("MealDayPresenter", "  _repo.fetchCategoryFromAPI ");
+        Log.i("MealDayPresenter", "  _repo.fetchMealFromAPI ");
     }
 
     @Override
     public void getCategories() {
-        Log.e("SearchCategoryPresenter", "  _repo.fetchCategoryFromAPI ");
+        Log.e("MealDayPresenter", "  _repo.fetchCategoryFromAPI ");
         _repo.fetchCategoryFromAPI(this);
     }
 
     @Override
     public void getAreas() {
-        Log.e("SearchCategoryPresenter", "  _repo.fetchCategoryFromAPI ");
+        Log.e("MealDayPresenter", "  _repo.fetchCountryFromAPI ");
         _repo.fetchCountryFromAPI(this);
     }
 

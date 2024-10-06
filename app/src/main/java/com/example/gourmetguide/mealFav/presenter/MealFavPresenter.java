@@ -9,4 +9,5 @@ import java.util.List;
 public interface MealFavPresenter {
     public LiveData<List<Meal>> getMeals();
     public void deleteFromFav(Meal meal);
+    public void addToFav(Meal meal);
 }

@@ -18,19 +18,17 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.gourmetguide.R;
 import com.example.gourmetguide.categorylist.view.CategoryActivity;
 import com.example.gourmetguide.model.Category;
-import com.example.gourmetguide.searchbycategory.view.SearchByCategoryAdapter2;
-import com.example.gourmetguide.searchbycategory.view.onMealSearchCategoryClickListener;
 
 import java.util.List;
 
-public class MealDayAdapter extends RecyclerView.Adapter<MealDayAdapter.ViewHolder>{
+public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder>{
 
     private final Context context;
     private List<Category> p;
     private static final String TAG = "Category Recycler viewer";
     private onMealClickListener listener;
 
-    public MealDayAdapter(List<Category> c, Context context, onMealClickListener _listener ) {
+    public CategoryListAdapter(List<Category> c, Context context, onMealClickListener _listener ) {
         this.context = (Context) context;
         this.p = c;
         this.listener=_listener;
@@ -63,17 +61,17 @@ public class MealDayAdapter extends RecyclerView.Adapter<MealDayAdapter.ViewHold
 
     @NonNull
     @Override
-    public MealDayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategoryListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.category_item, parent, false);
-        MealDayAdapter.ViewHolder vh = new MealDayAdapter.ViewHolder(v);
+        CategoryListAdapter.ViewHolder vh = new CategoryListAdapter.ViewHolder(v);
         Log.i(TAG, "===== onCreateViewHolder =====");
         Log.i(TAG, "deals with inflation of the card layout as item for recycler view");
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MealDayAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryListAdapter.ViewHolder holder, int position) {
         Category category = p.get(position);
         holder.strCategory.setText(p.get(position).getStrCategory());
         Glide.with(context)
